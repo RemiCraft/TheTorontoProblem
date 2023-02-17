@@ -1,7 +1,6 @@
 import React from 'react';
 import { Question } from "./Questions";
-import { Button } from 'react-bootstrap';
-
+import { Button, Container, Row, Col, ButtonGroup, Stack } from "react-bootstrap";
 
 interface QuestionProps{
     question: Question;
@@ -25,30 +24,55 @@ function QuestionPage(props: QuestionProps)
     //const question = props.question;
 
     return (
-        <div>
-            <h1>Question: {question.id}</h1>
-            <p>{question.prompt}</p>
-            <Button
-                variant="primary"
-                disabled={isResultsShown}
-                onClick={onAnswer}>
-                Yes
-            </Button>
-            <Button
-                variant="primary"
-                disabled={isResultsShown}
-                onClick={onAnswer}>
-                No
-            </Button>
+      <div>
+        <Container fluid>
+          <Stack gap={2}>
+            <h1 className="text-center">Question: {question.id}</h1>
+            <h1 className="text-center">{question.prompt}</h1>
+            <img
+              style={{ alignSelf: "center" }}
+              src="Images/Questions/Q1.png"
+              width={1000}
+              height={200}
+            ></img>
+            <h1 className="text-center">Do You Move To Toronto Canada?</h1>
+            <Row>
+              <Col>
+                <ButtonGroup className="d-flex">
+                  <Button
+                    variant="outline-dark"
+                    size="lg"
+                    disabled={isResultsShown}
+                    onClick={onAnswer}
+                  >
+                    Yes
+                  </Button>
+                </ButtonGroup>
+              </Col>
+              <Col>
+                <ButtonGroup className="d-flex">
+                  <Button
+                    variant="outline-dark"
+                    size="lg"
+                    disabled={isResultsShown}
+                    onClick={onAnswer}
+                  >
+                    No
+                  </Button>
+                </ButtonGroup>
+              </Col>
+            </Row>
             {isResultsShown && (
-                <Button
-                variant="primary"
-                onClick={onAdvance}>
-                Next
-            </Button>
+              <ButtonGroup className="d-flex">
+                <Button variant="outline-dark" size="lg" onClick={onAdvance}>
+                  Next
+                </Button>
+              </ButtonGroup>
             )}
-        </div>
-    )
+          </Stack>
+        </Container>
+      </div>
+    );
 }
 
 export default QuestionPage;
