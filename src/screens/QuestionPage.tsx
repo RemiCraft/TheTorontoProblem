@@ -1,6 +1,7 @@
 import React from 'react';
 import { Question } from "./Questions";
 import { Button, Container, Row, Col, ButtonGroup, Stack } from "react-bootstrap";
+import { collection, addDoc } from "firebase/firestore"; 
 
 interface QuestionProps{
     question: Question;
@@ -10,10 +11,19 @@ interface QuestionProps{
 //function Question(props: {prompt: string, id: number})
 function QuestionPage(props: QuestionProps)
 {
+
+    const [isYesAnswer, setIsYesAnswer] = React.useState(1);
     const [isResultsShown, setIsResultsShown] = React.useState(false);
 
-    const onAnswer = React.useCallback(() => {
+    const onAnswerYes = React.useCallback(() => {
         setIsResultsShown(true)
+        setIsYesAnswer(isYesAnswer + 1);
+        //console.log(isYesAnswer);
+        localStorage.setItem("numberYes", isYesAnswer.toString());
+    }, [[isYesAnswer]]);
+
+    const onAnswerNo = React.useCallback(() => {
+      setIsResultsShown(true);
     }, []);
 
     const onAdvance = React.useCallback(() => {
@@ -31,9 +41,9 @@ function QuestionPage(props: QuestionProps)
             <h1 className="text-center">{question.prompt}</h1>
             <img
               style={{ alignSelf: "center" }}
-              src="Images/Questions/Q1.png"
-              width={1000}
-              height={200}
+              src={"Images/Questions/" + question.id + ".png"}
+              width={640}
+              height={360}
             ></img>
             <h1 className="text-center">Do You Move To Toronto Canada?</h1>
             <Row>
@@ -43,7 +53,7 @@ function QuestionPage(props: QuestionProps)
                     variant="outline-dark"
                     size="lg"
                     disabled={isResultsShown}
-                    onClick={onAnswer}
+                    onClick={onAnswerYes}
                   >
                     Yes
                   </Button>
@@ -55,7 +65,7 @@ function QuestionPage(props: QuestionProps)
                     variant="outline-dark"
                     size="lg"
                     disabled={isResultsShown}
-                    onClick={onAnswer}
+                    onClick={onAnswerNo}
                   >
                     No
                   </Button>

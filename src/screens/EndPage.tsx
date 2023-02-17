@@ -6,7 +6,7 @@ function EndPage()
       <div>
         <Stack>
           <h1 className="text-center">
-            You Have Moved To Toronto Canada X Times
+            {"You Moved To Toronto Canada " + localStorage.getItem("numberYes") + " Times"}
           </h1>
           <img
             style={{ alignSelf: "center" }}
