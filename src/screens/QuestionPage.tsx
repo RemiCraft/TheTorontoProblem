@@ -51,7 +51,7 @@ function QuestionPage(props: QuestionProps)
         <Container>
           <Row>
             <Col className="text-center">
-              <h1>Question: {question.id}</h1>
+              <h1>Question {question.id} of 20</h1>
             </Col>
           </Row>
           <Row>

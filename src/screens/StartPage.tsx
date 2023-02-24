@@ -27,17 +27,30 @@ function StartPage(props: {setPage: (page: string) => void;})
             </Col>
           </Row>
           <Row>
-            <Col className="text-center" xs={{offset: 1, span: 10}}>
-            <img
-              //style={{ alignSelf: "center" }}
-              className="w-100 mb-3"
-              src="Images/black.png"
-            ></img>
+            <Col className="text-center">
+              <h2>
+                The Toronto Problem is a test designed to give you a prompt and
+                you determine if you would move to Toronto Canada.
+              </h2>
             </Col>
           </Row>
           <Row>
-            <Col xs={{offset: 1, span: 10}}>
-              <Button variant="outline-dark" size="lg" className="w-100" onClick={onStart}>
+            <Col className="text-center" xs={{ offset: 1, span: 10 }}>
+              <img
+                //style={{ alignSelf: "center" }}
+                className="w-100 mb-3"
+                src="Images/black.png"
+              ></img>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={{ offset: 1, span: 10 }}>
+              <Button
+                variant="outline-dark"
+                size="lg"
+                className="w-100"
+                onClick={onStart}
+              >
                 Start
               </Button>
             </Col>
