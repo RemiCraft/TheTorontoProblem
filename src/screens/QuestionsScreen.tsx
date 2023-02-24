@@ -1,24 +1,14 @@
 import React from 'react';
 import QuestionPage from "./QuestionPage";
 import questions from './Questions';
+import useLocalStorage from './useLocalStorage';
 
 function QuestionsScreen(props: {setPage: (page: string) => void;})
 {
-    const [questionNumber, setQuestionNumber] = React.useState(0);
+    const [questionNumber, setQuestionNumber] = useLocalStorage("questionNumber");
 
-    React.useEffect(() => {
-        const questionNumberString = localStorage.getItem("questionNumber");
-        if (questionNumberString)
-        {
-            //setQuestionNumber(parseInt(questionNumberString));
-        }
-    }, []);
-
-    React.useEffect(() => {
-        if (questionNumber !== 0)
-        {
-            localStorage.setItem("questionNumber", questionNumber.toString());
-        }
+    const advanceQuestion = React.useCallback(() => {
+        setQuestionNumber(questionNumber + 1);
     }, [questionNumber]);
 
     React.useEffect(() => {
@@ -26,11 +16,7 @@ function QuestionsScreen(props: {setPage: (page: string) => void;})
         {
             props.setPage("end");
         }
-    }, [questionNumber]);
-
-    const advanceQuestion = React.useCallback(() => {
-        setQuestionNumber(questionNumber + 1);
-    }, [questionNumber]);
+      }, [questionNumber]);
 
     const question = questions[questionNumber];
 
